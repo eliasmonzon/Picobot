@@ -44,7 +44,9 @@ def parar():
     motora2.low()
     motorb1.low()
     motorb2.low()
-
+    rojas.value(1)
+    time.sleep(1)
+    rojas.value(0)
 def bncs():
     blancas.value(1)
 
