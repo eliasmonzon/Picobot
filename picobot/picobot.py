@@ -1,6 +1,8 @@
 from machine import UART, Pin, PWM, 
 import utime,time,_thread
 modulo = UART(0, 9600, tx=Pin(16), rx=Pin(17))
+""" Pines usados para el ultrasondo,motores,leds y buzzer
+"""
 trig = Pin(7, Pin.OUT)
 echo = Pin(8, Pin.IN)
 motora1 = Pin(18, Pin.OUT)
@@ -10,9 +12,9 @@ motorb2 = Pin(21, Pin.OUT)
 blancas = Pin(6, Pin.OUT)
 verdes =  Pin(27, Pin.OUT)
 rojas = Pin(26, Pin.OUT)
-BUZZER_PIN = 22 # Piezo buzzer + is connected to GP6, - is connected to the GND right beside GP6
+BUZZER_PIN = 22 
 buzzer = PWM(Pin(BUZZER_PIN, Pin.OUT))
-
+# funciones que son llamadas en el while Tru:
 def adelante():
     motora1.high()
     motora2.low()
