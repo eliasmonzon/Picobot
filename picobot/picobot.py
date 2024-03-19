@@ -14,19 +14,20 @@ verdes =  Pin(27, Pin.OUT)
 rojas = Pin(26, Pin.OUT)
 BUZZER_PIN = 22 
 buzzer = PWM(Pin(BUZZER_PIN, Pin.OUT))
+
 # funciones que son llamadas en el while Tru:
 def adelante():
     motora1.high()
     motora2.low()
     motorb1.low()
     motorb2.high()
-
+ 
 def atras():
     motora1.low()
     motora2.high()
     motorb1.high()
     motorb2.low()
-
+     
 def izquierda():
     motora1.low()
     motora2.high()
@@ -45,8 +46,9 @@ def parar():
     motorb1.low()
     motorb2.low()
     rojas.value(1)
-    time.sleep(0.5)
+    time.sleep(0.3)
     rojas.value(0)
+    
 def bncs():
     blancas.value(1)
 
@@ -57,11 +59,8 @@ def bocina():
     buzzer.freq(500)
     buzzer.duty_u16(10000)
 
-def rjas():
-    rojas.value(1)
 def detecta():
     parar()
-    rjas()
     bocina()
     bncs()    
     utime.sleep(0.3)
@@ -71,8 +70,7 @@ def detecta():
 
 def inicio():
   
- 
-  def playNote(frequency, duration, pause) :
+ def playNote(frequency, duration, pause) :
       global buzzer
       buzzer.duty_u16(10000)  # ajusta el volumen
       buzzer.freq(frequency)
@@ -95,6 +93,7 @@ def inicio():
       rojas.value(1)
       time.sleep(0.02)
       rojas.value(0)
+      
 def ultrasonido():
     # Enviar pulso para activar el sensor de ultrasonido
     trig.low()
@@ -118,8 +117,8 @@ def ultrasonido():
     return distancia
 #usa el segundo nucleo para la funcion inicio
 _thread.start_new_thread(inicio,())
-''' control bluetooth: si recive los caracteres maracdos con ""
-     llama  a las diferentes funciones ''' 
+''' control bluetooth: resicibe los caracteres maracdos con ""
+    y llama  a las diferentes funciones ''' 
 while True:
     if modulo.any() > 0:
         dato = modulo.read(1)
@@ -151,7 +150,7 @@ while True:
             buzzer.duty_u16(0)
     # Comprobar distancia con el sensor de ultrasonido
     distancia_actual = ultrasonido()
-    '''si la distancia es menor a 15cm y recive el caracter "F"
+    '''si la distancia es menor a 15cm y recibe el caracter "F"
        llama a la funcion detecta'''
     if distancia_actual <15 and dato == "F":
             detecta()   
