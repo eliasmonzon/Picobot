@@ -44,7 +44,9 @@ def parar():
     motora2.low()
     motorb1.low()
     motorb2.low()
-   
+    rojas.value(1)
+    time.sleep(0.5)
+    rojas.value(0)
 def bncs():
     blancas.value(1)
 
@@ -116,8 +118,8 @@ def ultrasonido():
     return distancia
 #usa el segundo nucleo para la funcion inicio
 _thread.start_new_thread(inicio,())
-''' control bluetooth: resicibe los caracteres maracdos con ""
-    y llama  a las diferentes funciones ''' 
+''' control bluetooth: si recive los caracteres maracdos con ""
+     llama  a las diferentes funciones ''' 
 while True:
     if modulo.any() > 0:
         dato = modulo.read(1)
@@ -133,9 +135,6 @@ while True:
             derecha()
         elif dato == "S":
             parar()
-            rojas.value(1)
-            time.sleep(1)
-            rojas.value(0)
         elif dato == "W":
             bncs()
         elif dato == "w":
@@ -152,7 +151,7 @@ while True:
             buzzer.duty_u16(0)
     # Comprobar distancia con el sensor de ultrasonido
     distancia_actual = ultrasonido()
-    '''si la distancia es menor a 15cm y recibe el caracter "F"
+    '''si la distancia es menor a 15cm y recive el caracter "F"
        llama a la funcion detecta'''
     if distancia_actual <15 and dato == "F":
             detecta()   
