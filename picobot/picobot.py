@@ -69,30 +69,32 @@ def detecta():
     buzzer.duty_u16(0)
 
 def inicio():
-  
- def playNote(frequency, duration, pause) :
-      global buzzer
-      buzzer.duty_u16(10000)  # ajusta el volumen
-      buzzer.freq(frequency)
-      time.sleep(duration)
-      buzzer.duty_u16(0) #apaga el buzzer
-      time.sleep(pause)
-   # notas que seran escuchadas en el buzzer  
-  notes = [440, 494, 523, 587, 659, 698, 784]
-  #secuencia for para tocar las notas 
-  for note in notes :
-      playNote(note, 0.1, 0.1 )
-      blancas.value(1)
-      time.sleep(0.02)
-      blancas.value(0)
-      time.sleep(0.02)
-      verdes.value(1)
-      time.sleep(0.02)
-      verdes.value(0)
-      time.sleep(0.02)
-      rojas.value(1)
-      time.sleep(0.02)
-      rojas.value(0)
+    def playNote(frequency, duration, pause):
+        global buzzer
+        buzzer.duty_u16(10000)  # ajusta el volumen
+        buzzer.freq(frequency)
+        time.sleep(duration)
+        buzzer.duty_u16(0)  # apaga el buzzer
+        time.sleep(pause)
+    
+    # notas que serán escuchadas en el buzzer  
+    notes = [440, 494, 523, 587, 659, 698, 784]
+
+    # secuencia for para tocar las notas 
+    for note in notes:
+        playNote(note, 0.1, 0.1)
+        blancas.value(1)
+        time.sleep(0.02)
+        blancas.value(0)
+        time.sleep(0.02)
+        verdes.value(1)
+        time.sleep(0.02)
+        verdes.value(0)
+        time.sleep(0.02)
+        rojas.value(1)
+        time.sleep(0.02)
+        rojas.value(0)
+
       
 def ultrasonido():
     # Enviar pulso para activar el sensor de ultrasonido
