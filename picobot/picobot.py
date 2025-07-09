@@ -95,7 +95,6 @@ def inicio():
         time.sleep(0.02)
         rojas.value(0)
 
-      
 def ultrasonido():
     # Enviar pulso para activar el sensor de ultrasonido
     trig.low()
